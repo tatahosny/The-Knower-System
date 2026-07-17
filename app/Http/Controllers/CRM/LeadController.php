@@ -1,12 +1,12 @@
 <?php
-
 namespace App\Http\Controllers\CRM;
 
 use App\Http\Controllers\Controller;
+use App\Services\CRM\LeadService;
 use App\Http\Requests\CRM\StoreLeadRequest;
 use App\Http\Requests\CRM\UpdateLeadRequest;
+use App\Http\Resources\CRM\LeadResource;
 use App\Models\Lead;
-use App\Services\CRM\LeadService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Gate;
 
@@ -22,61 +22,47 @@ class LeadController extends Controller
     public function index(): JsonResponse
     {
         Gate::authorize('viewAny', Lead::class);
-
-        $leads = $this->leadService->getAllLeads();
-
         return response()->json([
             'success' => true,
-            'message' => 'Leads retrieved successfully.',
-            'data' => $leads
+            'data' => LeadResource::collection($this->leadService->getAll())
         ]);
     }
 
     public function store(StoreLeadRequest $request): JsonResponse
     {
-        $lead = $this->leadService->createLead($request->validated());
-
+        Gate::authorize('create', Lead::class);
+        $lead = $this->leadService->create($request->validated());
         return response()->json([
             'success' => true,
-            'message' => 'Lead created successfully.',
-            'data' => $lead
+            'message' => 'Lead created successfully',
+            'data' => new LeadResource($lead)
         ], 201);
     }
 
     public function show(Lead $lead): JsonResponse
     {
         Gate::authorize('view', $lead);
-
-        $lead->load('assignee');
-
         return response()->json([
             'success' => true,
-            'message' => 'Lead retrieved successfully.',
-            'data' => $lead
+            'data' => new LeadResource($lead->load(['company', 'contact', 'assignee']))
         ]);
     }
 
     public function update(UpdateLeadRequest $request, Lead $lead): JsonResponse
     {
-        $lead = $this->leadService->updateLead($lead, $request->validated());
-
+        Gate::authorize('update', $lead);
+        $lead = $this->leadService->update($lead, $request->validated());
         return response()->json([
             'success' => true,
-            'message' => 'Lead updated successfully.',
-            'data' => $lead
+            'message' => 'Lead updated successfully',
+            'data' => new LeadResource($lead)
         ]);
     }
 
     public function destroy(Lead $lead): JsonResponse
     {
         Gate::authorize('delete', $lead);
-
-        $this->leadService->deleteLead($lead);
-
-        return response()->json([
-            'success' => true,
-            'message' => 'Lead deleted successfully.',
-            'data' => null
-        ]);
+        $this->leadService->delete($lead);
+        return response()->json(['success' => true, 'message' => 'Lead deleted successfully']);
     }
 }

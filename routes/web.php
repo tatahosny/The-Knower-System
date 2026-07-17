@@ -39,6 +39,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/contacts', function () {
         return Inertia::render('CRM/Contacts');
     })->name('contacts.index');
+
+    Route::get('/leads', function () {
+        return Inertia::render('CRM/Leads');
+    })->name('leads.index');
 });
 
 require __DIR__.'/auth.php';

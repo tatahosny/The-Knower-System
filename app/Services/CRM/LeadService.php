@@ -1,53 +1,30 @@
 <?php
-
 namespace App\Services\CRM;
 
 use App\Models\Lead;
-use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Facades\Auth;
 
 class LeadService
 {
-    /**
-     * Get all leads with their assignees.
-     *
-     * @return Collection
-     */
-    public function getAllLeads(): Collection
+    public function getAll()
     {
-        return Lead::with('assignee')->latest()->get();
+        return Lead::with(['company', 'contact', 'assignee'])->latest()->paginate(25);
     }
 
-    /**
-     * Create a new lead.
-     *
-     * @param array $data
-     * @return Lead
-     */
-    public function createLead(array $data): Lead
+    public function create(array $data): Lead
     {
+        $data['created_by'] = Auth::id();
         return Lead::create($data);
     }
 
-    /**
-     * Update an existing lead.
-     *
-     * @param Lead $lead
-     * @param array $data
-     * @return Lead
-     */
-    public function updateLead(Lead $lead, array $data): Lead
+    public function update(Lead $lead, array $data): Lead
     {
+        $data['updated_by'] = Auth::id();
         $lead->update($data);
         return $lead;
     }
 
-    /**
-     * Delete a lead.
-     *
-     * @param Lead $lead
-     * @return bool|null
-     */
-    public function deleteLead(Lead $lead): ?bool
+    public function delete(Lead $lead): bool
     {
         return $lead->delete();
     }
