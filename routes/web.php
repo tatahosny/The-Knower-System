@@ -30,6 +30,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/workspaces', function () {
         return Inertia::render('Core/Workspaces');
     })->name('workspaces.index');
+
+    // CRM Routes
+    Route::get('/companies', function () {
+        return Inertia::render('CRM/Companies');
+    })->name('companies.index');
 });
 
 require __DIR__.'/auth.php';

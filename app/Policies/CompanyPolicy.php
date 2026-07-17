@@ -12,26 +12,26 @@ class CompanyPolicy
 
     public function viewAny(User $user): bool
     {
-        return $user->hasPermissionTo('view_companys');
+        return $user->hasPermissionTo('view_companies');
     }
 
     public function view(User $user, Company $company): bool
     {
-        return $user->hasPermissionTo('view_companys');
+        return $user->hasPermissionTo('view_companies');
     }
 
     public function create(User $user): bool
     {
-        return $user->hasPermissionTo('create_companys');
+        return $user->hasPermissionTo('create_companies');
     }
 
     public function update(User $user, Company $company): bool
     {
-        return $user->hasPermissionTo('edit_companys');
+        return $user->hasPermissionTo('edit_companies');
     }
 
     public function delete(User $user, Company $company): bool
     {
-        return $user->hasPermissionTo('delete_companys');
+        return $user->hasPermissionTo('delete_companies');
     }
 }
