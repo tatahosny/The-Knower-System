@@ -32,7 +32,7 @@ export const PERMISSIONS = [
   "crm.view",
   "lead.manage",
   "client.manage",
-  "company.manage",
+
   "quotation.manage",
   "contract.manage",
   "project.view",
@@ -79,7 +79,7 @@ export const ROLE_PERMISSIONS: Record<Role, Permission[]> = {
     "dashboard.view",
     "crm.view",
     "client.manage",
-    "company.manage",
+
     "project.view",
     "finance.view",
     "report.view",
@@ -93,7 +93,7 @@ export const ROLE_PERMISSIONS: Record<Role, Permission[]> = {
     "crm.view",
     "lead.manage",
     "client.manage",
-    "company.manage",
+
     "quotation.manage",
     "contract.manage",
     "ai.use",

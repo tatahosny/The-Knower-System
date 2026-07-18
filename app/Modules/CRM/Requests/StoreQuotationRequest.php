@@ -11,7 +11,7 @@ class StoreQuotationRequest extends FormRequest
     public function rules() {
         return [
             'quotation_number' => 'required|string|max:50|unique:quotations',
-            'company_id' => 'required|exists:companies,id',
+
             'contact_id' => 'nullable|exists:contacts,id',
             'lead_id' => 'nullable|exists:leads,id',
             'parent_id' => 'nullable|exists:quotations,id',

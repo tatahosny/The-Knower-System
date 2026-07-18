@@ -15,7 +15,7 @@ class UpdateClientRequest extends FormRequest
     {
         return [
 
-            'company_id' => 'nullable|exists:companies,id',
+
             'name' => 'sometimes|required|string|max:255',
             'email' => 'sometimes|required|email|max:255|unique:clients,email,' . $client->id,
             'phone' => 'nullable|string|max:50',

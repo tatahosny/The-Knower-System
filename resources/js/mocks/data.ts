@@ -13,18 +13,9 @@ export interface User {
   online: boolean;
 }
 
-export interface Company {
-  id: ID;
-  name: string;
-  industry: string;
-  website: string;
-  country: string;
-  createdAt: string;
-}
 
 export interface Client {
   id: ID;
-  companyId: ID;
   name: string;
   email: string;
   phone: string;
@@ -271,7 +262,6 @@ export interface Contact {
   name: string;
   email: string;
   phone: string;
-  companyId: ID;
 }
 
 // --- Seeds ---
@@ -282,23 +272,17 @@ const iso = (daysFromNow = 0) => {
   return d.toISOString();
 };
 
-export const companies: Company[] = [
-  { id: "co_1", name: "Nile Pharma", industry: "Pharmaceuticals", website: "nilepharma.com", country: "Egypt", createdAt: iso(-120) },
-  { id: "co_2", name: "Cedar Retail", industry: "Retail", website: "cedar.io", country: "Lebanon", createdAt: iso(-80) },
-  { id: "co_3", name: "Atlas Logistics", industry: "Logistics", website: "atlaslog.co", country: "Morocco", createdAt: iso(-45) },
-  { id: "co_4", name: "Kairo Bank", industry: "Finance", website: "kairobank.eg", country: "Egypt", createdAt: iso(-200) },
-];
 
 export const clients: Client[] = [
-  { id: "cl_1", companyId: "co_1", name: "Salma Fahmy", email: "salma@nilepharma.com", phone: "+20 100 111 2222", position: "IT Director", status: "active", createdAt: iso(-100) },
-  { id: "cl_2", companyId: "co_2", name: "Karim Haddad", email: "karim@cedar.io", phone: "+961 3 555 111", position: "COO", status: "active", createdAt: iso(-70) },
-  { id: "cl_3", companyId: "co_3", name: "Youssef Amrani", email: "youssef@atlaslog.co", phone: "+212 6 12 34 56", position: "CTO", status: "active", createdAt: iso(-30) },
-  { id: "cl_4", companyId: "co_4", name: "Nour El Din", email: "nour@kairobank.eg", phone: "+20 122 000 9999", position: "Head of Digital", status: "inactive", createdAt: iso(-180) },
+  { id: "cl_1", name: "Salma Fahmy", email: "salma@nilepharma.com", phone: "+20 100 111 2222", position: "IT Director", status: "active", createdAt: iso(-100) },
+  { id: "cl_2", name: "Karim Haddad", email: "karim@cedar.io", phone: "+961 3 555 111", position: "COO", status: "active", createdAt: iso(-70) },
+  { id: "cl_3", name: "Youssef Amrani", email: "youssef@atlaslog.co", phone: "+212 6 12 34 56", position: "CTO", status: "active", createdAt: iso(-30) },
+  { id: "cl_4", name: "Nour El Din", email: "nour@kairobank.eg", phone: "+20 122 000 9999", position: "Head of Digital", status: "inactive", createdAt: iso(-180) },
 ];
 
 export const contacts: Contact[] = [
-  { id: "cn_1", name: "Ali Mostafa", email: "ali@nilepharma.com", phone: "+20 100 999 8888", companyId: "co_1" },
-  { id: "cn_2", name: "Reem Saad", email: "reem@cedar.io", phone: "+961 3 200 100", companyId: "co_2" },
+  { id: "cn_1", name: "Ali Mostafa", email: "ali@nilepharma.com", phone: "+20 100 999 8888" },
+  { id: "cn_2", name: "Reem Saad", email: "reem@cedar.io", phone: "+961 3 200 100" },
 ];
 
 export const leads: Lead[] = [

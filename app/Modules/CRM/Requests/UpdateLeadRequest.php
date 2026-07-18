@@ -12,7 +12,7 @@ class UpdateLeadRequest extends FormRequest
     public function rules() {
         return [
             'title' => 'required|string|max:255',
-            'company_id' => 'nullable|exists:companies,id',
+
             'contact_id' => 'nullable|exists:contacts,id',
             'assigned_to' => 'nullable|exists:users,id',
             'pipeline_stage' => ['nullable', new Enum(LeadPipelineStage::class)],

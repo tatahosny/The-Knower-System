@@ -10,7 +10,7 @@ use App\Traits\HasWorkspace;
 class Client extends Model
 {
     protected $fillable = [
-        'company_id', 'name', 'email', 'phone', 'position', 'status',
+        'name', 'email', 'phone', 'position', 'status',
     ];
 
     public function projects()      { return $this->hasMany(Project::class); 
