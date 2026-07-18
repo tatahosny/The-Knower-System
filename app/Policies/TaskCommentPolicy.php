@@ -2,8 +2,8 @@
 
 namespace App\Policies;
 
-use App\Models\TaskComment;
-use App\Models\User;
+use App\Modules\Projects\Models\TaskComment;
+use App\Modules\Auth\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class TaskCommentPolicy

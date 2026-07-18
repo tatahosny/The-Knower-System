@@ -2,8 +2,8 @@
 
 namespace App\Policies;
 
-use App\Models\File;
-use App\Models\User;
+use App\Modules\Projects\Models\File;
+use App\Modules\Auth\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class FilePolicy

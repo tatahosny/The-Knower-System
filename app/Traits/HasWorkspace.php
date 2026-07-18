@@ -2,8 +2,8 @@
 
 namespace App\Traits;
 
-use App\Models\Scopes\TenantScope;
-use App\Models\Workspace;
+use App\Core\Scopes\TenantScope;
+use App\Modules\Settings\Models\Workspace;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 trait HasWorkspace

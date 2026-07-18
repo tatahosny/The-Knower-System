@@ -19,7 +19,7 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        Schema::create('workspace_user', function (Blueprint $table) {
+        Schema::create('user_workspace', function (Blueprint $table) {
             $table->id();
             $table->foreignId('workspace_id')->constrained()->cascadeOnDelete();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
@@ -76,7 +76,7 @@ return new class extends Migration
             $table->dropColumn('current_workspace_id');
         });
 
-        Schema::dropIfExists('workspace_user');
+        Schema::dropIfExists('user_workspace');
         Schema::dropIfExists('workspaces');
     }
 };

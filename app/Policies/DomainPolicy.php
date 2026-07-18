@@ -2,8 +2,8 @@
 
 namespace App\Policies;
 
-use App\Models\Domain;
-use App\Models\User;
+use App\Modules\Hosting\Models\Domain;
+use App\Modules\Auth\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class DomainPolicy

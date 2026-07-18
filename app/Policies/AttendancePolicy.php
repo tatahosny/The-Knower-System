@@ -2,8 +2,8 @@
 
 namespace App\Policies;
 
-use App\Models\Attendance;
-use App\Models\User;
+use App\Modules\HR\Models\Attendance;
+use App\Modules\Auth\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class AttendancePolicy

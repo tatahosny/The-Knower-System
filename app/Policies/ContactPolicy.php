@@ -1,8 +1,8 @@
 <?php
 namespace App\Policies;
 
-use App\Models\Contact;
-use App\Models\User;
+use App\Modules\CRM\Models\Contact;
+use App\Modules\Auth\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class ContactPolicy

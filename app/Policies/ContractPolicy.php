@@ -2,8 +2,8 @@
 
 namespace App\Policies;
 
-use App\Models\Contract;
-use App\Models\User;
+use App\Modules\CRM\Models\Contract;
+use App\Modules\Auth\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class ContractPolicy

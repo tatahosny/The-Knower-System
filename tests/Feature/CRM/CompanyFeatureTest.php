@@ -3,6 +3,7 @@
 namespace Tests\Feature\CRM;
 
 use App\Models\Company;
+use App\Models\Workspace;
 use App\Models\User;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
@@ -20,6 +21,10 @@ class CompanyFeatureTest extends TestCase
         $role = Role::firstOrCreate(['name' => 'Project Manager']);
         $role->givePermissionTo('create_companies');
         $user->assignRole($role);
+
+        $workspace = Workspace::create(['name' => 'Test Workspace', 'slug' => 'test-workspace', 'owner_id' => $user->id]);
+        $user->current_workspace_id = $workspace->id;
+        $user->save();
 
         $response = $this->actingAs($user)->postJson('/api/v1/companies', [
             'company_name' => 'Stark Industries',

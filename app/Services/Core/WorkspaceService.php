@@ -1,7 +1,7 @@
 <?php
 namespace App\Services\Core;
 
-use App\Models\Workspace;
+use App\Modules\Settings\Models\Workspace;
 use Illuminate\Database\Eloquent\Collection;
 
 class WorkspaceService

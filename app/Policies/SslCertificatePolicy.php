@@ -2,8 +2,8 @@
 
 namespace App\Policies;
 
-use App\Models\SslCertificate;
-use App\Models\User;
+use App\Modules\Hosting\Models\SslCertificate;
+use App\Modules\Auth\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class SslCertificatePolicy

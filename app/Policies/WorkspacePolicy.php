@@ -1,8 +1,8 @@
 <?php
 namespace App\Policies;
 
-use App\Models\User;
-use App\Models\Workspace;
+use App\Modules\Auth\Models\User;
+use App\Modules\Settings\Models\Workspace;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class WorkspacePolicy

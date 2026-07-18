@@ -4,6 +4,7 @@ namespace Tests\Feature\CRM;
 
 use App\Models\Lead;
 use App\Models\Company;
+use App\Models\Workspace;
 use App\Models\User;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
@@ -22,7 +23,10 @@ class LeadFeatureTest extends TestCase
         $role->givePermissionTo('create_leads');
         $user->assignRole($role);
         
-        $company = Company::create(['company_name' => 'Wayne Enterprises']);
+        $workspace = Workspace::create(['name' => 'Test Workspace', 'slug' => 'test-workspace', 'owner_id' => $user->id]);
+        $user->current_workspace_id = $workspace->id;
+        $user->save();
+        $company = Company::create(['company_name' => 'Wayne Enterprises', 'workspace_id' => $workspace->id]);
 
         $response = $this->actingAs($user)->postJson('/api/v1/leads', [
             'title' => 'Security System Upgrade',
