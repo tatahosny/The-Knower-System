@@ -11,6 +11,8 @@ use App\Traits\HasWorkspace;
 
 class TicketMessage extends Model
 {
+    use HasWorkspace, LogsActivity;
+
     protected $table = 'ticket_messages';
 
     protected $fillable = [

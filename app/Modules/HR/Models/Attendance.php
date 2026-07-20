@@ -9,6 +9,8 @@ use App\Traits\HasWorkspace;
 
 class Attendance extends Model
 {
+    use HasWorkspace, LogsActivity;
+
     protected $table = 'attendance';
 
     protected $fillable = [

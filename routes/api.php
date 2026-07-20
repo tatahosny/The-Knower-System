@@ -68,6 +68,20 @@ use App\Modules\Core\Controllers\AuditLogController;
 
 Route::prefix('v1')->group(function () {
 
+    // ─── Public Marketing API (No Auth Required) ──────────────────────────────
+    Route::prefix('public')->group(function () {
+        Route::get('/portfolio',   [\App\Modules\CMS\Controllers\PublicApiController::class, 'portfolio']);
+        Route::get('/pricing',     [\App\Modules\CMS\Controllers\PublicApiController::class, 'pricing']);
+        Route::get('/testimonials',[\App\Modules\CMS\Controllers\PublicApiController::class, 'testimonials']);
+        Route::get('/faqs',        [\App\Modules\CMS\Controllers\PublicApiController::class, 'faqs']);
+        Route::get('/blog',        [\App\Modules\CMS\Controllers\PublicApiController::class, 'blog']);
+        Route::get('/team',        [\App\Modules\CMS\Controllers\PublicApiController::class, 'team']);
+        Route::get('/services',    [\App\Modules\CMS\Controllers\PublicApiController::class, 'services']);
+        Route::get('/careers',     [\App\Modules\CMS\Controllers\PublicApiController::class, 'careers']);
+        
+        // Support Widget Ingestion
+        Route::post('/support/ingest', [\App\Modules\Support\Controllers\IngestionController::class, 'ingest']);
+    });
     // ── Auth ──────────────────────────────────────────────────────────────────
     Route::post('auth/login', [\App\Modules\Auth\Controllers\AuthController::class, 'login']);
 
@@ -98,6 +112,14 @@ Route::prefix('v1')->group(function () {
 
         // Audit Logs
         Route::get('audit-logs', [AuditLogController::class, 'index']);
+
+        // ── CMS ───────────────────────────────────────────────────────────────────
+        Route::apiResource('marketing-plans', \App\Modules\CMS\Controllers\MarketingPlanController::class);
+        Route::apiResource('testimonials', \App\Modules\CMS\Controllers\TestimonialController::class);
+        Route::apiResource('faqs', \App\Modules\CMS\Controllers\FaqController::class);
+        Route::apiResource('blog-posts', \App\Modules\CMS\Controllers\BlogPostController::class);
+        Route::apiResource('team-members', \App\Modules\CMS\Controllers\TeamMemberController::class);
+        Route::apiResource('services-cms', \App\Modules\CMS\Controllers\ServiceController::class);
 
         // ── Notifications ─────────────────────────────────────────────────────────
         Route::get('notifications', [App\Modules\Notifications\Controllers\NotificationController::class, 'index']);
@@ -153,6 +175,9 @@ Route::prefix('v1')->group(function () {
         Route::apiResource('ssl',      SslCertificateController::class);
 
         // ── Support ───────────────────────────────────────────────────────────────
+        Route::get   ('support/conversations', [\App\Modules\Support\Controllers\ConversationController::class, 'index']);
+        Route::get   ('support/conversations/{id}/messages', [\App\Modules\Support\Controllers\ConversationController::class, 'messages']);
+        
         Route::apiResource('tickets',  TicketController::class);
         Route::get   ('tickets/{id}/messages', [TicketMessageController::class, 'index']);
         Route::post  ('tickets/{id}/messages', [TicketMessageController::class, 'store']);

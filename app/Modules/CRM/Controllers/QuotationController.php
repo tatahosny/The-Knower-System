@@ -31,7 +31,7 @@ class QuotationController extends Controller
     public function store(StoreQuotationRequest $request): JsonResponse
     {
         Gate::authorize('create', Quotation::class);
-        $quotation = $this->quotationService->create($request->validated());
+        $quotation = $this->quotationService->create($request->all());
         return response()->json([
             'success' => true,
             'message' => 'Quotation created successfully',
@@ -51,7 +51,7 @@ class QuotationController extends Controller
     public function update(UpdateQuotationRequest $request, Quotation $quotation): JsonResponse
     {
         Gate::authorize('update', $quotation);
-        $quotation = $this->quotationService->update($quotation, $request->validated());
+        $quotation = $this->quotationService->update($quotation, $request->all());
         return response()->json([
             'success' => true,
             'message' => 'Quotation updated successfully',

@@ -12,6 +12,8 @@ use App\Traits\HasWorkspace;
 
 class HostingAccount extends Model
 {
+    use HasWorkspace, LogsActivity;
+
     protected $table = 'hosting_accounts';
 
     protected $fillable = [

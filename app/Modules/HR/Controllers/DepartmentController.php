@@ -32,7 +32,7 @@ class DepartmentController extends Controller
 
     public function store(StoreDepartmentRequest $request): JsonResponse
     {
-        $department = $this->departmentService->create($request->validated());
+        $department = $this->departmentService->create($request->all());
 
         return response()->json([
             'success' => true,
@@ -52,7 +52,7 @@ class DepartmentController extends Controller
 
     public function update(UpdateDepartmentRequest $request, Department $department): JsonResponse
     {
-        $department = $this->departmentService->update($department, $request->validated());
+        $department = $this->departmentService->update($department, $request->all());
 
         return response()->json([
             'success' => true,

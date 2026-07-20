@@ -9,7 +9,7 @@ class PaymentService
 {
     public function getAll(): Collection
     {
-        return Payment::latest()->get(); // Add default relations if needed
+        return Payment::orderBy("id", "desc")->get(); // Add default relations if needed
     }
 
     public function create(array $data): Payment

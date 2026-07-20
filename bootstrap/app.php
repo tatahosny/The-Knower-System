@@ -22,25 +22,34 @@ return Application::configure(basePath: dirname(__DIR__))
         ]);
 
         $middleware->statefulApi();
+        $middleware->alias([
+            'permission' => \App\Http\Middleware\CheckPermission::class,
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
+        $exceptions->reportable(function (\Throwable $e) {
+            \App\Modules\Core\Services\ErrorLoggingService::logException($e);
+        });
+
         $exceptions->shouldRenderJsonWhen(
             fn (Request $request) => $request->is('api/*'),
         );
         $exceptions->respond(function (Response $response, Throwable $exception, Request $request) {
             $status = $response->getStatusCode();
-            $isProductionError = !app()->environment(['local', 'testing']) && in_array($status, [500, 503]);
-            $isNotFoundOrForbidden = in_array($status, [404, 403]);
-            
-            if ($isProductionError || $isNotFoundOrForbidden) {
-                return Inertia::render('Error', ['status' => $status])
-                    ->toResponse($request)
-                    ->setStatusCode($response->getStatusCode());
-            } elseif ($response->getStatusCode() === 419) {
+            $handledStatuses = [400, 401, 403, 404, 405, 408, 429, 500, 502, 503, 504];
+
+            if ($status === 419) {
                 return back()->with([
                     'message' => 'The page expired, please try again.',
                 ]);
             }
+
+            if (in_array($status, $handledStatuses)) {
+                return Inertia::render('Error', ['status' => $status])
+                    ->toResponse($request)
+                    ->setStatusCode($status);
+            }
+
             return $response;
         });
     })->create();

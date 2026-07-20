@@ -151,5 +151,28 @@
       "ticket": "Summarize ticket",
       "docs": "Write documentation"
     }
+  },
+  "public": {
+    "nav": {
+      "solutions": "Solutions",
+      "products": "Products",
+      "services": "Services",
+      "pricing": "Pricing",
+      "portfolio": "Portfolio",
+      "company": "Company",
+      "more": "More",
+      "goToApp": "Go to app",
+      "signIn": "Sign in",
+      "startProject": "Start your project"
+    },
+    "hero": {
+      "tagline": "INTRODUCING THE KNOWER OS 2026",
+      "title1": "The operating system for",
+      "title2": "software houses",
+      "subtitle": "CRM, projects, hosting, HR, invoicing and an AI copilot — one platform to build products, run operations, and delight every client. English & العربية out of the box.",
+      "startProject": "Start your project",
+      "bookDemo": "Book a demo",
+      "seeWork": "See our work"
+    }
   }
 }

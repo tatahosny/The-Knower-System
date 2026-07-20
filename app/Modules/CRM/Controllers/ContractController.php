@@ -38,7 +38,7 @@ class ContractController extends Controller
 
     public function store(StoreContractRequest $request): JsonResponse
     {
-        $contract = $this->contractService->create($request->validated());
+        $contract = $this->contractService->create($request->all());
 
         return response()->json([
             'success' => true,
@@ -61,7 +61,7 @@ class ContractController extends Controller
 
     public function update(UpdateContractRequest $request, Contract $contract): JsonResponse
     {
-        $contract = $this->contractService->update($contract, $request->validated());
+        $contract = $this->contractService->update($contract, $request->all());
 
         return response()->json([
             'success' => true,

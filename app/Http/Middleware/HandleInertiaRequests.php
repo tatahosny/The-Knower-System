@@ -29,10 +29,23 @@ class HandleInertiaRequests extends Middleware
      */
     public function share(Request $request): array
     {
+        $user = $request->user();
+        
+        if ($user) {
+            $defaultPerms = $user->getAllPermissions();
+            $customPerms = $user->permissions ?? [];
+            if ($user->hasRole('super_admin')) {
+                // Return a special flag or all frontend permissions? The frontend has an ALL array for super_admin
+                $user->permissions = ['*']; 
+            } else {
+                $user->permissions = array_values(array_unique(array_merge($defaultPerms, $customPerms)));
+            }
+        }
+
         return [
             ...parent::share($request),
             'auth' => [
-                'user' => $request->user(),
+                'user' => $user,
             ],
         ];
     }

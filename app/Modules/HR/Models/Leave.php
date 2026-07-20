@@ -9,6 +9,8 @@ use App\Traits\HasWorkspace;
 
 class Leave extends Model
 {
+    use HasWorkspace, LogsActivity;
+
     protected $fillable = [
         'employee_id', 'type', 'start_date', 'end_date', 'status', 'reason',
     ];

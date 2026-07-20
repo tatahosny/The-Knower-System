@@ -9,7 +9,7 @@ class AttendanceService
 {
     public function getAll(): Collection
     {
-        return Attendance::latest()->get(); // Add default relations if needed
+        return Attendance::orderBy('id', 'desc')->get(); // Add default relations if needed
     }
 
     public function create(array $data): Attendance

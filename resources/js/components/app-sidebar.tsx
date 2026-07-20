@@ -32,6 +32,10 @@ import {
   Clock,
   Briefcase,
   FileBadge,
+  Edit,
+  MessageSquare,
+  Monitor,
+  Bot,
 } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import {
@@ -114,8 +118,28 @@ const groups: Group[] = [
     ],
   },
   {
+    labelKey: "CMS",
+    items: [
+      { to: "/cms/pricing", labelKey: "Pricing Plans", icon: Briefcase, perm: "cms.manage" },
+      { to: "/cms/testimonials", labelKey: "Testimonials", icon: Trophy, perm: "cms.manage" },
+      { to: "/cms/faqs", labelKey: "FAQs", icon: FileText, perm: "cms.manage" },
+      { to: "/cms/blog", labelKey: "Blog Posts", icon: Edit, perm: "cms.manage" },
+      { to: "/cms/team", labelKey: "Team Members", icon: Users, perm: "cms.manage" },
+      { to: "/cms/services", labelKey: "Services", icon: Settings, perm: "cms.manage" },
+    ],
+  },
+  {
     labelKey: "nav.support",
-    items: [{ to: "/support/tickets", labelKey: "nav.tickets", icon: Ticket, perm: "support.view" }],
+    items: [
+      { to: "/support/dashboard", labelKey: "Dashboard", icon: LayoutDashboard, perm: "support.view" },
+      { to: "/support/inbox", labelKey: "Inbox", icon: MessageSquare, perm: "support.view" },
+      { to: "/support/live-chat", labelKey: "Live Chat", icon: Monitor, perm: "support.view" },
+      { to: "/support/conversations", labelKey: "Conversations", icon: Ticket, perm: "support.view" },
+      { to: "/support/contacts", labelKey: "Contacts", icon: ContactIcon, perm: "support.view" },
+      { to: "/support/queue", labelKey: "Queue Manager", icon: Network, perm: "support.manage" },
+      { to: "/support/automation", labelKey: "Automation Rules", icon: Bot, perm: "support.manage" },
+      { to: "/support/widget", labelKey: "Widget Settings", icon: Settings, perm: "support.manage" },
+    ],
   },
   {
     labelKey: "nav.reports",
@@ -162,7 +186,19 @@ export function AppSidebar() {
       </SidebarHeader>
       <SidebarContent>
         {groups.map((g) => {
-          const visible = g.items.filter((i) => !i.perm || (role && roleHas(role, i.perm)));
+          const visible = g.items.filter((i) => {
+            if (!i.perm) return true;
+            
+            // Check if backend specifically passed '*' (super_admin)
+            if (user?.permissions?.includes('*')) return true;
+            
+            // Check if backend user object has this specific permission
+            if (user?.permissions?.includes(i.perm)) return true;
+            
+            // Fallback to frontend role check if backend permissions array is missing
+            return role && roleHas(role, i.perm);
+          });
+          
           if (visible.length === 0) return null;
           return (
             <SidebarGroup key={g.labelKey}>

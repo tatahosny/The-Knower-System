@@ -31,7 +31,7 @@ class LeadController extends Controller
     public function store(StoreLeadRequest $request): JsonResponse
     {
         Gate::authorize('create', Lead::class);
-        $lead = $this->leadService->create($request->validated());
+        $lead = $this->leadService->create($request->all());
         return response()->json([
             'success' => true,
             'message' => 'Lead created successfully',
@@ -51,7 +51,7 @@ class LeadController extends Controller
     public function update(UpdateLeadRequest $request, Lead $lead): JsonResponse
     {
         Gate::authorize('update', $lead);
-        $lead = $this->leadService->update($lead, $request->validated());
+        $lead = $this->leadService->update($lead, $request->all());
         return response()->json([
             'success' => true,
             'message' => 'Lead updated successfully',

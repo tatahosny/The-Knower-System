@@ -49,6 +49,12 @@ const endpointMap: Record<string, string> = {
   leaves: "leaves",
   notifications: "notifications",
   timeLogs: "time-logs",
+  marketingPlans: "marketing-plans",
+  testimonials: "testimonials",
+  faqs: "faqs",
+  blogPosts: "blog-posts",
+  teamMembers: "team-members",
+  servicesCms: "services-cms",
 };
 
 export const queryClient = new QueryClient({

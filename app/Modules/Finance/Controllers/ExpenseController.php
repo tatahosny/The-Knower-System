@@ -38,7 +38,7 @@ class ExpenseController extends Controller
 
     public function store(StoreExpenseRequest $request): JsonResponse
     {
-        $expense = $this->expenseService->create($request->validated());
+        $expense = $this->expenseService->create($request->all());
 
         return response()->json([
             'success' => true,
@@ -60,7 +60,7 @@ class ExpenseController extends Controller
 
     public function update(UpdateExpenseRequest $request, Expense $expense): JsonResponse
     {
-        $expense = $this->expenseService->update($expense, $request->validated());
+        $expense = $this->expenseService->update($expense, $request->all());
 
         return response()->json([
             'success' => true,

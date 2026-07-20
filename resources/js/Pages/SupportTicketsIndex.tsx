@@ -37,7 +37,7 @@ export default function TicketsPage() {
               subject: v.subject,
               priority: (v.priority as Ticket["priority"]) || "medium",
               status: "open",
-              assignedTo: "Support",
+              assignedTo: null,
               createdAt: new Date().toISOString(),
               messages: [{ id: makeId("m"), sender: "Client", message: v.message || "New issue", createdAt: new Date().toISOString() }],
             });

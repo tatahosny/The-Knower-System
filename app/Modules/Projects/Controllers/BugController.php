@@ -38,7 +38,7 @@ class BugController extends Controller
 
     public function store(StoreBugRequest $request): JsonResponse
     {
-        $bug = $this->bugService->create($request->validated());
+        $bug = $this->bugService->create($request->all());
 
         return response()->json([
             'success' => true,
@@ -61,7 +61,7 @@ class BugController extends Controller
 
     public function update(UpdateBugRequest $request, Bug $bug): JsonResponse
     {
-        $bug = $this->bugService->update($bug, $request->validated());
+        $bug = $this->bugService->update($bug, $request->all());
 
         return response()->json([
             'success' => true,

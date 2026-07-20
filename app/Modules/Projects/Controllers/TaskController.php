@@ -38,7 +38,7 @@ class TaskController extends Controller
 
     public function store(StoreTaskRequest $request): JsonResponse
     {
-        $task = $this->taskService->create($request->validated());
+        $task = $this->taskService->create($request->all());
 
         return response()->json([
             'success' => true,
@@ -61,7 +61,7 @@ class TaskController extends Controller
 
     public function update(UpdateTaskRequest $request, Task $task): JsonResponse
     {
-        $task = $this->taskService->update($task, $request->validated());
+        $task = $this->taskService->update($task, $request->all());
 
         return response()->json([
             'success' => true,

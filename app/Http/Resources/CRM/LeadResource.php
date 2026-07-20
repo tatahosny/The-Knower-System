@@ -13,7 +13,7 @@ class LeadResource extends JsonResource
             'name' => $this->name ?? $this->title,
             'email' => $this->email,
             'phone' => $this->phone,
-            'source' => $this->lead_source ? (is_string($this->lead_source) ? $this->lead_source : $this->lead_source->value) : 'Website',
+            'source' => $this->lead_source ? (is_string($this->lead_source) ? $this->lead_source : $this->lead_source->value) : 'website',
             'budget' => (float) $this->lead_value,
             'status' => $this->pipeline_stage ? (is_string($this->pipeline_stage) ? $this->pipeline_stage : $this->pipeline_stage->value) : 'new',
             'createdAt' => $this->created_at->toISOString(),

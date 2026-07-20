@@ -10,6 +10,7 @@ export type Role =
   | "accountant"
   | "hr"
   | "support"
+  | "support_manager"
   | "client";
 
 export const ALL_ROLES: Role[] = [
@@ -67,6 +68,12 @@ export const PERMISSIONS = [
   "code.review",
   "design.upload",
   "qa.test",
+  "cms.manage",
+  "support.inbox",
+  "support.tickets",
+  "support.canned",
+  "support.kb_read",
+  "support.manage",
 ] as const;
 
 export type Permission = (typeof PERMISSIONS)[number];
@@ -168,6 +175,22 @@ export const ROLE_PERMISSIONS: Record<Role, Permission[]> = {
     "ticket.manage",
     "ticket.reply",
     "client.manage",
+    "support.inbox",
+    "support.tickets",
+    "support.canned",
+    "support.kb_read",
+  ],
+  support_manager: [
+    "dashboard.view",
+    "support.view",
+    "ticket.manage",
+    "ticket.reply",
+    "client.manage",
+    "support.inbox",
+    "support.tickets",
+    "support.canned",
+    "support.kb_read",
+    "support.manage", // queue, SLA, escalations, automation, agents, reports, widget
   ],
   client: ["client_portal.view"],
 };

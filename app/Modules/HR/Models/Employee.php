@@ -11,6 +11,8 @@ use App\Traits\HasWorkspace;
 
 class Employee extends Model
 {
+    use HasWorkspace, LogsActivity;
+
     protected $fillable = [
         'user_id', 'department', 'position', 'salary', 'hire_date', 'status',
         'address', 'id_number', 'id_photo'

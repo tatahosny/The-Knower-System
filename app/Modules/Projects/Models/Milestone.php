@@ -9,6 +9,8 @@ use App\Traits\HasWorkspace;
 
 class Milestone extends Model
 {
+    use HasWorkspace, LogsActivity;
+
     protected $fillable = [
         'project_id', 'title', 'deadline', 'progress', 'status',
     ];

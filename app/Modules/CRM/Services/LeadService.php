@@ -16,8 +16,11 @@ class LeadService
         $data['created_by'] = Auth::id();
 
         $data['lead_value'] = $data['budget'] ?? $data['lead_value'] ?? 0;
-        $data['pipeline_stage'] = $data['status'] ?? 'new';
-        $data['lead_source'] = $data['source'] ?? 'website';
+        $data['pipeline_stage'] = strtolower($data['status'] ?? 'new');
+        $data['lead_source'] = strtolower($data['source'] ?? 'website');
+        if (empty($data['title']) && !empty($data['name'])) {
+            $data['title'] = $data['name'];
+        }
 
         return Lead::create($data);
     }

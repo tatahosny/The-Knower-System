@@ -13,6 +13,8 @@ use App\Traits\HasWorkspace;
 
 class Ticket extends Model
 {
+    use HasWorkspace, LogsActivity;
+
     protected $fillable = [
         'client_id', 'project_id', 'assigned_to', 'subject', 'priority', 'status',
     ];

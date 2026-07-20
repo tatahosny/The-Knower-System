@@ -5,9 +5,13 @@ namespace App\Modules\HR\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use App\Traits\HasWorkspace;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 class JobPosting extends Model
 {
+    use HasWorkspace, LogsActivity;
+
     protected $fillable = [
         'title', 'department_id', 'type', 'location', 
         'description', 'requirements', 'status', 'closing_date'

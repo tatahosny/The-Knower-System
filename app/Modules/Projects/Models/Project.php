@@ -15,6 +15,8 @@ use App\Modules\Hosting\Models\HostingAccount;
 
 class Project extends Model
 {
+    use HasWorkspace, LogsActivity;
+
     protected $fillable = [
         'client_id', 'name', 'description', 'type', 'status',
         'priority', 'start_date', 'deadline', 'budget', 'progress', 'created_by',
@@ -24,6 +26,8 @@ class Project extends Model
         'start_date' => 'date',
         'deadline'   => 'date',
         'budget'     => 'decimal:2',
+        'is_public'  => 'boolean',
+        'public_stack' => 'array',
     ];
 
     public function client()        { return $this->belongsTo(Client::class); 

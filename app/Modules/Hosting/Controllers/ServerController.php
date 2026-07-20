@@ -38,7 +38,7 @@ class ServerController extends Controller
 
     public function store(StoreServerRequest $request): JsonResponse
     {
-        $server = $this->serverService->create($request->validated());
+        $server = $this->serverService->create($request->all());
 
         return response()->json([
             'success' => true,
@@ -60,7 +60,7 @@ class ServerController extends Controller
 
     public function update(UpdateServerRequest $request, Server $server): JsonResponse
     {
-        $server = $this->serverService->update($server, $request->validated());
+        $server = $this->serverService->update($server, $request->all());
 
         return response()->json([
             'success' => true,

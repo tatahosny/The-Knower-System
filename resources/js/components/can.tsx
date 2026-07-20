@@ -5,6 +5,8 @@ import { roleHas, type Permission } from "@/lib/permissions";
 export function useCan(perm: Permission): boolean {
   const user = useAuth((s) => s.user);
   if (!user) return false;
+  if (user.permissions?.includes('*')) return true;
+  if (user.permissions?.includes(perm)) return true;
   return roleHas(user.role, perm);
 }
 

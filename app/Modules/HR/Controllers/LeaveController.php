@@ -38,7 +38,7 @@ class LeaveController extends Controller
 
     public function store(StoreLeaveRequest $request): JsonResponse
     {
-        $leave = $this->leaveService->create($request->validated());
+        $leave = $this->leaveService->create($request->all());
 
         return response()->json([
             'success' => true,
@@ -60,7 +60,7 @@ class LeaveController extends Controller
 
     public function update(UpdateLeaveRequest $request, Leave $leave): JsonResponse
     {
-        $leave = $this->leaveService->update($leave, $request->validated());
+        $leave = $this->leaveService->update($leave, $request->all());
 
         return response()->json([
             'success' => true,

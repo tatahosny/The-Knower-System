@@ -9,6 +9,8 @@ use App\Traits\HasWorkspace;
 
 class Server extends Model
 {
+    use HasWorkspace, LogsActivity;
+
     protected $fillable = [
         'name', 'provider', 'ip', 'location', 'os', 'status', 'notes',
     ];

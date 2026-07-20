@@ -11,6 +11,8 @@ use App\Traits\HasWorkspace;
 
 class Bug extends Model
 {
+    use HasWorkspace, LogsActivity;
+
     protected $fillable = [
         'project_id', 'task_id', 'reported_by', 'assigned_to', 'severity', 'status', 'description', 'steps_to_reproduce',
     ];

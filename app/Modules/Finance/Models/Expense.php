@@ -11,6 +11,8 @@ use App\Traits\HasWorkspace;
 
 class Expense extends Model
 {
+    use HasWorkspace, LogsActivity;
+
     protected $fillable = [
         'category', 'title', 'amount', 'payment_method', 'created_by', 'notes',
     ];

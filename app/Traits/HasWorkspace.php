@@ -14,7 +14,7 @@ trait HasWorkspace
 
         static::creating(function ($model) {
             if (auth()->hasUser() && empty($model->workspace_id)) {
-                $model->workspace_id = auth()->user()->current_workspace_id;
+                $model->workspace_id = auth()->user()->current_workspace_id ?? 1;
             }
         });
     }

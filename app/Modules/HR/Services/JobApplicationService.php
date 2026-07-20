@@ -11,7 +11,7 @@ class JobApplicationService
 {
     public function getAll(): Collection
     {
-        return JobApplication::with('jobPosting')->latest()->get();
+        return JobApplication::with('jobPosting')->orderBy("id", "desc")->get();
     }
 
     public function create(array $data, ?UploadedFile $resume = null): JobApplication

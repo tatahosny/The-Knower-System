@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class JobApplication extends Model
 {
+    use HasWorkspace, LogsActivity;
+
     protected $fillable = [
         'job_posting_id', 'first_name', 'last_name', 'email', 'phone', 
         'resume_path', 'cover_letter', 'portfolio_url', 'status', 'notes'

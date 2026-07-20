@@ -38,7 +38,7 @@ class SslCertificateController extends Controller
 
     public function store(StoreSslCertificateRequest $request): JsonResponse
     {
-        $sslcertificate = $this->sslcertificateService->create($request->validated());
+        $sslcertificate = $this->sslcertificateService->create($request->all());
 
         return response()->json([
             'success' => true,
@@ -60,7 +60,7 @@ class SslCertificateController extends Controller
 
     public function update(UpdateSslCertificateRequest $request, SslCertificate $sslcertificate): JsonResponse
     {
-        $sslcertificate = $this->sslcertificateService->update($sslcertificate, $request->validated());
+        $sslcertificate = $this->sslcertificateService->update($sslcertificate, $request->all());
 
         return response()->json([
             'success' => true,

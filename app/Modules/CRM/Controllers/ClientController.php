@@ -36,7 +36,7 @@ class ClientController extends Controller
 
     public function store(StoreClientRequest $request): JsonResponse
     {
-        $client = $this->clientService->create($request->validated());
+        $client = $this->clientService->create($request->all());
 
         return response()->json([
             'success' => true,
@@ -59,7 +59,7 @@ class ClientController extends Controller
 
     public function update(UpdateClientRequest $request, Client $client): JsonResponse
     {
-        $client = $this->clientService->update($client, $request->validated());
+        $client = $this->clientService->update($client, $request->all());
 
         return response()->json([
             'success' => true,

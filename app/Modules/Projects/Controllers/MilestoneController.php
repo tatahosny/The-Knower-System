@@ -38,7 +38,7 @@ class MilestoneController extends Controller
 
     public function store(StoreMilestoneRequest $request): JsonResponse
     {
-        $milestone = $this->milestoneService->create($request->validated());
+        $milestone = $this->milestoneService->create($request->all());
 
         return response()->json([
             'success' => true,
@@ -61,7 +61,7 @@ class MilestoneController extends Controller
 
     public function update(UpdateMilestoneRequest $request, Milestone $milestone): JsonResponse
     {
-        $milestone = $this->milestoneService->update($milestone, $request->validated());
+        $milestone = $this->milestoneService->update($milestone, $request->all());
 
         return response()->json([
             'success' => true,

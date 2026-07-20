@@ -56,7 +56,7 @@ export default function LeadsPage() {
               name: v.name,
               email: v.email,
               phone: v.phone,
-              source: v.source || "Website",
+              source: v.source || "website",
               budget: Number(v.budget || 0),
               status: v.status || "new",
             });
@@ -66,7 +66,7 @@ export default function LeadsPage() {
             { name: "name", label: "Name", type: "text", required: true },
             { name: "email", label: "Email", type: "email", required: true },
             { name: "phone", label: "Phone", type: "text" },
-            { name: "source", label: "Source", type: "text", defaultValue: "Website" },
+            { name: "source", label: "Source", type: "text", defaultValue: "website" },
             { name: "budget", label: "Budget (USD)", type: "number" },
             {
               name: "status",

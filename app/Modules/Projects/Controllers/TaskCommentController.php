@@ -38,7 +38,7 @@ class TaskCommentController extends Controller
 
     public function store(StoreTaskCommentRequest $request): JsonResponse
     {
-        $taskcomment = $this->taskcommentService->create($request->validated());
+        $taskcomment = $this->taskcommentService->create($request->all());
 
         return response()->json([
             'success' => true,
@@ -60,7 +60,7 @@ class TaskCommentController extends Controller
 
     public function update(UpdateTaskCommentRequest $request, TaskComment $taskcomment): JsonResponse
     {
-        $taskcomment = $this->taskcommentService->update($taskcomment, $request->validated());
+        $taskcomment = $this->taskcommentService->update($taskcomment, $request->all());
 
         return response()->json([
             'success' => true,

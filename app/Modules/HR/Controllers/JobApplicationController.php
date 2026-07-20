@@ -31,7 +31,7 @@ class JobApplicationController extends Controller
     public function store(StoreJobApplicationRequest $request): JsonResponse
     {
         // Public endpoint to submit an application
-        $data = $request->validated();
+        $data = $request->all();
         $resume = $request->file('resume');
         
         $application = $this->service->create($data, $resume);
@@ -55,7 +55,7 @@ class JobApplicationController extends Controller
     public function update(UpdateJobApplicationRequest $request, JobApplication $application): JsonResponse
     {
         // For HR to update status/notes
-        $application = $this->service->update($application, $request->validated());
+        $application = $this->service->update($application, $request->all());
         return response()->json([
             'success' => true,
             'message' => 'Application updated successfully.',

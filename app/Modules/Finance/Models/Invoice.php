@@ -12,6 +12,8 @@ use App\Traits\HasWorkspace;
 
 class Invoice extends Model
 {
+    use HasWorkspace, LogsActivity;
+
     protected $fillable = [
         'client_id', 'project_id', 'invoice_number', 'amount', 'currency', 'status', 'due_date', 'notes',
     ];

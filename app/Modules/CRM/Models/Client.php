@@ -15,6 +15,8 @@ use App\Traits\HasWorkspace;
 
 class Client extends Model
 {
+    use HasWorkspace, LogsActivity;
+
     protected $fillable = [
         'name', 'email', 'phone', 'position', 'status',
     ];

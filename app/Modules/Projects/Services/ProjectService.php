@@ -9,7 +9,7 @@ class ProjectService
 {
     public function getAll(): Collection
     {
-        return Project::latest()->get(); // Add default relations if needed
+        return Project::orderBy("id", "desc")->get(); // Add default relations if needed
     }
 
     public function create(array $data): Project

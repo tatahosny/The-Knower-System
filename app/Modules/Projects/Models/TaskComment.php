@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class TaskComment extends Model
 {
+    use HasWorkspace, LogsActivity;
+
     protected $table = 'task_comments';
 
     protected $fillable = [

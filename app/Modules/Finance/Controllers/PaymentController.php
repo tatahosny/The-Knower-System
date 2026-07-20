@@ -38,7 +38,7 @@ class PaymentController extends Controller
 
     public function store(StorePaymentRequest $request): JsonResponse
     {
-        $payment = $this->paymentService->create($request->validated());
+        $payment = $this->paymentService->create($request->all());
 
         return response()->json([
             'success' => true,
@@ -60,7 +60,7 @@ class PaymentController extends Controller
 
     public function update(UpdatePaymentRequest $request, Payment $payment): JsonResponse
     {
-        $payment = $this->paymentService->update($payment, $request->validated());
+        $payment = $this->paymentService->update($payment, $request->all());
 
         return response()->json([
             'success' => true,

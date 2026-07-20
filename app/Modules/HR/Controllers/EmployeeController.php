@@ -38,7 +38,7 @@ class EmployeeController extends Controller
 
     public function store(StoreEmployeeRequest $request): JsonResponse
     {
-        $employee = $this->employeeService->create($request->validated());
+        $employee = $this->employeeService->create($request->all());
 
         return response()->json([
             'success' => true,
@@ -61,7 +61,7 @@ class EmployeeController extends Controller
 
     public function update(UpdateEmployeeRequest $request, Employee $employee): JsonResponse
     {
-        $employee = $this->employeeService->update($employee, $request->validated());
+        $employee = $this->employeeService->update($employee, $request->all());
 
         return response()->json([
             'success' => true,

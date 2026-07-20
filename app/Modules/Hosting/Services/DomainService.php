@@ -9,7 +9,7 @@ class DomainService
 {
     public function getAll(): Collection
     {
-        return Domain::latest()->get(); // Add default relations if needed
+        return Domain::orderBy("id", "desc")->get(); // Add default relations if needed
     }
 
     public function create(array $data): Domain

@@ -38,7 +38,7 @@ class FileController extends Controller
 
     public function store(StoreFileRequest $request): JsonResponse
     {
-        $file = $this->fileService->create($request->validated());
+        $file = $this->fileService->create($request->all());
 
         return response()->json([
             'success' => true,
@@ -60,7 +60,7 @@ class FileController extends Controller
 
     public function update(UpdateFileRequest $request, File $file): JsonResponse
     {
-        $file = $this->fileService->update($file, $request->validated());
+        $file = $this->fileService->update($file, $request->all());
 
         return response()->json([
             'success' => true,

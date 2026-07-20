@@ -9,7 +9,7 @@ class ContractService
 {
     public function getAll(): Collection
     {
-        return Contract::latest()->get(); // Add default relations if needed
+        return Contract::orderBy("id", "desc")->get(); // Add default relations if needed
     }
 
     public function create(array $data): Contract

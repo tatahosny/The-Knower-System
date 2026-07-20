@@ -11,6 +11,8 @@ use App\Traits\HasWorkspace;
 
 class File extends Model
 {
+    use HasWorkspace, LogsActivity;
+
     protected $fillable = [
         'project_id', 'uploaded_by', 'file_name', 'file_path', 'size', 'type',
     ];

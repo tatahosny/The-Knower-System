@@ -9,6 +9,8 @@ use App\Traits\HasWorkspace;
 
 class SslCertificate extends Model
 {
+    use HasWorkspace, LogsActivity;
+
     protected $table = 'ssl_certificates';
 
     protected $fillable = [

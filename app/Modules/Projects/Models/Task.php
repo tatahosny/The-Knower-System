@@ -11,6 +11,8 @@ use App\Traits\HasWorkspace;
 
 class Task extends Model
 {
+    use HasWorkspace, LogsActivity;
+
     protected $fillable = [
         'project_id', 'milestone_id', 'assigned_to', 'title', 'description',
         'status', 'priority', 'start_date', 'due_date', 'estimated_hours', 'actual_hours',

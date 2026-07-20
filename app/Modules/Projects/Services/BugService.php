@@ -9,7 +9,7 @@ class BugService
 {
     public function getAll(): Collection
     {
-        return Bug::latest()->get(); // Add default relations if needed
+        return Bug::orderBy("id", "desc")->get(); // Add default relations if needed
     }
 
     public function create(array $data): Bug

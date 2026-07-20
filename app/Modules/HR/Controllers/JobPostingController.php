@@ -40,7 +40,7 @@ class JobPostingController extends Controller
 
     public function store(StoreJobPostingRequest $request): JsonResponse
     {
-        $posting = $this->service->create($request->validated());
+        $posting = $this->service->create($request->all());
         return response()->json([
             'success' => true,
             'message' => 'Job posting created successfully.',
@@ -59,7 +59,7 @@ class JobPostingController extends Controller
 
     public function update(UpdateJobPostingRequest $request, JobPosting $job): JsonResponse
     {
-        $job = $this->service->update($job, $request->validated());
+        $job = $this->service->update($job, $request->all());
         return response()->json([
             'success' => true,
             'message' => 'Job posting updated successfully.',

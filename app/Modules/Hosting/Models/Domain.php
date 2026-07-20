@@ -12,6 +12,8 @@ use App\Traits\HasWorkspace;
 
 class Domain extends Model
 {
+    use HasWorkspace, LogsActivity;
+
     protected $fillable = [
         'client_id', 'project_id', 'domain', 'registrar', 'expiry_date', 'auto_renew', 'status',
     ];

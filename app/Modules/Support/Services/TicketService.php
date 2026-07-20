@@ -9,12 +9,21 @@ class TicketService
 {
     public function getAll(): Collection
     {
-        return Ticket::latest()->get(); // Add default relations if needed
+        return Ticket::orderBy("id", "desc")->get(); // Add default relations if needed
     }
 
     public function create(array $data): Ticket
     {
-        return Ticket::create($data);
+        $ticket = Ticket::create($data);
+        if (!empty($data['messages']) && is_array($data['messages'])) {
+            foreach ($data['messages'] as $msg) {
+                $ticket->messages()->create([
+                    'sender' => $msg['sender'] ?? 'Client',
+                    'message' => $msg['message'] ?? '',
+                ]);
+            }
+        }
+        return $ticket;
     }
 
     public function update(Ticket $ticket, array $data): Ticket

@@ -38,7 +38,7 @@ class DomainController extends Controller
 
     public function store(StoreDomainRequest $request): JsonResponse
     {
-        $domain = $this->domainService->create($request->validated());
+        $domain = $this->domainService->create($request->all());
 
         return response()->json([
             'success' => true,
@@ -60,7 +60,7 @@ class DomainController extends Controller
 
     public function update(UpdateDomainRequest $request, Domain $domain): JsonResponse
     {
-        $domain = $this->domainService->update($domain, $request->validated());
+        $domain = $this->domainService->update($domain, $request->all());
 
         return response()->json([
             'success' => true,

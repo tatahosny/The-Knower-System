@@ -38,7 +38,7 @@ class HostingAccountController extends Controller
 
     public function store(StoreHostingAccountRequest $request): JsonResponse
     {
-        $hostingaccount = $this->hostingaccountService->create($request->validated());
+        $hostingaccount = $this->hostingaccountService->create($request->all());
 
         return response()->json([
             'success' => true,
@@ -60,7 +60,7 @@ class HostingAccountController extends Controller
 
     public function update(UpdateHostingAccountRequest $request, HostingAccount $hostingaccount): JsonResponse
     {
-        $hostingaccount = $this->hostingaccountService->update($hostingaccount, $request->validated());
+        $hostingaccount = $this->hostingaccountService->update($hostingaccount, $request->all());
 
         return response()->json([
             'success' => true,

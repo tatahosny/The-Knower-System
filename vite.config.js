@@ -3,18 +3,18 @@ import laravel from 'laravel-vite-plugin';
 import react from '@vitejs/plugin-react';
 
 import tailwindcss from '@tailwindcss/vite';
+import { TanStackRouterVite } from '@tanstack/router-plugin/vite';
 
 export default defineConfig({
-    server: {
-        host: '10.12.32.176',
-        hmr: {
-            host: '10.12.32.176',
-        },
-    },
+   
     plugins: [
+        TanStackRouterVite({
+            routesDirectory: './resources/js/routes',
+            generatedRouteTree: './resources/js/routeTree.gen.ts',
+        }),
         tailwindcss(),
         laravel({
-            input: 'resources/js/app.tsx',
+            input: ['resources/js/app.tsx', 'resources/js/public_app.tsx'],
             refresh: true,
         }),
         react(),

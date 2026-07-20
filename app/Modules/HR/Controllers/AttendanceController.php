@@ -38,7 +38,7 @@ class AttendanceController extends Controller
 
     public function store(StoreAttendanceRequest $request): JsonResponse
     {
-        $attendance = $this->attendanceService->create($request->validated());
+        $attendance = $this->attendanceService->create($request->all());
 
         return response()->json([
             'success' => true,
@@ -60,7 +60,7 @@ class AttendanceController extends Controller
 
     public function update(UpdateAttendanceRequest $request, Attendance $attendance): JsonResponse
     {
-        $attendance = $this->attendanceService->update($attendance, $request->validated());
+        $attendance = $this->attendanceService->update($attendance, $request->all());
 
         return response()->json([
             'success' => true,

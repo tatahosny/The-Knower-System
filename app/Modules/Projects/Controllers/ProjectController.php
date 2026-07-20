@@ -38,7 +38,7 @@ class ProjectController extends Controller
 
     public function store(StoreProjectRequest $request): JsonResponse
     {
-        $project = $this->projectService->create($request->validated());
+        $project = $this->projectService->create($request->all());
 
         return response()->json([
             'success' => true,
@@ -61,7 +61,7 @@ class ProjectController extends Controller
 
     public function update(UpdateProjectRequest $request, Project $project): JsonResponse
     {
-        $project = $this->projectService->update($project, $request->validated());
+        $project = $this->projectService->update($project, $request->all());
 
         return response()->json([
             'success' => true,

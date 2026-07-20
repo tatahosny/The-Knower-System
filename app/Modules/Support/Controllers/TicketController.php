@@ -38,7 +38,7 @@ class TicketController extends Controller
 
     public function store(StoreTicketRequest $request): JsonResponse
     {
-        $ticket = $this->ticketService->create($request->validated());
+        $ticket = $this->ticketService->create($request->all());
 
         return response()->json([
             'success' => true,
@@ -61,7 +61,7 @@ class TicketController extends Controller
 
     public function update(UpdateTicketRequest $request, Ticket $ticket): JsonResponse
     {
-        $ticket = $this->ticketService->update($ticket, $request->validated());
+        $ticket = $this->ticketService->update($ticket, $request->all());
 
         return response()->json([
             'success' => true,
